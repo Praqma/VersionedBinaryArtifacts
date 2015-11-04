@@ -1,0 +1,33 @@
+apply plugin: 'groovy'
+apply plugin: 'maven-publish'
+
+version = '1.0.1-SNAPSHOT'
+group = 'net.praqma.gradle'
+
+def artifact = 'GradleBuildProperties'
+
+sourceCompatibility = targetCompatibility = '1.7'
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+}
+
+publishing {
+    repositories {
+        maven {
+            def s = version.endsWith('-SNAPSHOT') ? 'snapshot' : 'release'
+            url "${artifactory_contextUrl}/plugins-${s}-local"
+            credentials {
+                username artifactory_user
+                password artifactory_password
+            }
+        }
+    }
+    publications {
+        maven(MavenPublication) {
+            artifactId artifact
+            from components.java
+        }
+    }
+}

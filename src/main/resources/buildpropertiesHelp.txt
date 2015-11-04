@@ -1,0 +1,6 @@
+Always execute Gradle with the Gradle wrapper (i.e. execute the 'gradlew' script in the root of the project).
+
+To execute a task 'myTask' execute the command './gradlew myTask'
+
+Useful tasks:
+    tasks: List available tasks

@@ -1,0 +1,18 @@
+buildscript {
+    repositories {
+      mavenLocal()
+    }
+    dependencies {
+        classpath "net.praqma.gradle:GradleBuildProperties:1.0.1-SNAPSHOT"
+    }
+    configurations.classpath.resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+apply plugin: 'net.praqma.uber'
+
+buildproperties {
+    publishing {
+        zip {
+            from file("hello.txt")
+        }
+    }
+}
