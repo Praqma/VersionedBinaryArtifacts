@@ -9,10 +9,12 @@ buildscript {
 }
 apply plugin: 'net.praqma.uber'
 
+
 buildproperties {
     publishing {
         zip {
             from file("hello.txt")
+            from file("goodbye.txt")
         }
     }
 }
