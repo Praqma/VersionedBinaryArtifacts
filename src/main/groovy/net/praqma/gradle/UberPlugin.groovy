@@ -59,7 +59,8 @@ class UberPlugin implements Plugin<Project> {
         buildExtension.with {
             artifact = x(props.artifact)
             dependencies = (x(props.dependencies))?.tokenize(',')
-            buildCmd = props.buildCmd // buildCmd will be expanded later
+            //buildCmd = props.buildCmd // buildCmd will be expanded later
+            buildCmd = Utils.buildCmd(Utils.osFamily(), props)
             buildWorkingDir = project.file(x(props.buildWorkingDir) ?: project.projectDir)
             versionDir = props.versionDir ? project.file(x(props.versionDir)) : null
             productName = props.productName ?: 'demo_project' // Default value for backward capability, should probably be mandatory

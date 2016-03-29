@@ -1,9 +1,16 @@
 # GradleBuildProperties
-A gradle plugin to allow a build be defined in a properties file
+A gradle plugin to allow a build be defined in a properties file:
 
-## Key features
+````
+group=net.praqma
+version=1.0.5-SNAPSHOT
+artifact=demo-project-${osFamily}
+buildWorkingDir=.
+buildCmd=${osFamily == 'win32' ? 'build.bat' : './build.sh'}
+dependencies=net.praqma:demo-project-${osFamily}:1.0.9-SNAPSHOT
+````
 
-A simple properties file where you can describe:
+In the properties file you can describe:
 
  - The artifact name
  - The version
@@ -12,10 +19,10 @@ A simple properties file where you can describe:
  - The build directory to run from
  - The dependencies that must be resolved
 
-Key features:
- - Automatic pre-build generation of a version.h and build.h to use in the build process
+## Key features:
 
- - Creation of a buildInfo.properties
+ - Automatic pre-build generation of a version.h and build.h to use in the build process
+ - Creation of a buildInfo.properties:
 
 ````
 BUILD_TIMESTAMP=Wed Nov 04 15:05:20 CET 2015
@@ -37,6 +44,10 @@ There is a test project to test the plugin:
     cd test
     ../gradlew pTML
 
+Or all in one:
+
+    ./gradlew pTML && pushd test && ../gradlew pTML && popd
+
 ## Opinionated
 
 Assumes Artifactory
@@ -52,12 +63,3 @@ The repository is selected based on the version in the build.properties file:
 libs-snapshot-local
 libs-release-local
 ````
-
-# Customer wish list
-
-Novelda:
-
- - Don’t overwrite buildinfo file when there are multiple dependencies
- - Add information about the version of dependencies used in the built to buildinfo file
- - Allow separate build commands per platform
- - Allow to force the platform from the commandline

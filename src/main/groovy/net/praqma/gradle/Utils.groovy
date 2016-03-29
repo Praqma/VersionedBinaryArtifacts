@@ -68,4 +68,10 @@ class Utils {
         }
         throw new RuntimeException("Unable to determine OS family")
     }
+
+    static String buildCmd(String os, Properties props) {
+
+        String lookup = "buildCmd." + os
+        return props.get(lookup, props.get("buildCmd"))
+    }
 }
