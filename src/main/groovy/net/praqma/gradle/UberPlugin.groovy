@@ -84,10 +84,12 @@ class UberPlugin implements Plugin<Project> {
                 maven {
                     url contextUrl + buildExtension.dependencySnapshotRepoPath
                 }
+                mavenLocal()
             }
             maven {
                 url contextUrl + buildExtension.dependencyReleaseRepoPath
             }
+            mavenLocal()
         }
     }
 
@@ -121,8 +123,13 @@ class UberPlugin implements Plugin<Project> {
         }
 
         Sync t3 = createBuildTask('resolveDependencies', Sync) {
-            from(project.configurations._lib.collect { project.zipTree(it) })
-            into buildExtension.resolveDepDir
+          project.configurations._lib.collect{
+            from {project.zipTree(it)}
+            into buildExtension.resolveDepDir+"/mydir"
+          }
+            //from(project.configurations._lib.collect { project.zipTree(it) })
+            //project.logger.lifecycle project.configurations._lib
+            //into buildExtension.resolveDepDir
         }
 
         String taskName = 'executeBuildCommand'
