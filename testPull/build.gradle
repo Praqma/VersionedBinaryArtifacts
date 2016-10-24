@@ -13,7 +13,13 @@ apply plugin: 'net.praqma.uber'
 buildproperties {
     publishing {
       zip {
-          from file("hello.txt")
+	includeEmptyDirs = true
+	into('/hex'){	
+       		from file("hello.txt")
+	}
+	into('/bin'){
+		from file("goodbye.txt")
+	}
       }
     }
 }

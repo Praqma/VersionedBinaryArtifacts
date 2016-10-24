@@ -11,13 +11,15 @@ apply plugin: 'net.praqma.uber'
 
 
 buildproperties {
-  repositories {
-    mavenLocal()
-  }
     publishing {
-        zip {
-            from file("hello.txt")
-            from file("goodbye.txt")
-        }
+      zip {
+	includeEmptyDirs = true
+	into('/hex'){
+       		from file("hello.txt")
+	}
+	into('/bin'){
+		from file("goodbye.txt")
+	}
+      }
     }
 }
