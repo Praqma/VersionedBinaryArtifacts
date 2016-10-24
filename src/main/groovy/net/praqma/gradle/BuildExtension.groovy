@@ -14,6 +14,7 @@ class BuildExtension {
     }
 
     String version
+    String branch
     String group
     String artifact
     String productName
@@ -59,6 +60,7 @@ class BuildExtension {
     Map<String, Object> getExpansions() {
         [
                 sha           : Utils.gitSha(),
+                branch        : Utils.gitBranch(),
                 osFamily      : osFamily,
                 buildNumber   : buildNumber,
                 buildUrl      : buildUrl,

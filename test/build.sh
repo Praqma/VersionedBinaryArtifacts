@@ -1,2 +1,2 @@
-echo "Hello world" > hello.txt
-echo "Goodbye, cruel world" > goodbye.txt
+echo "Hello world - nice to greet you" > hello.txt
+echo "Adios, world" > goodbye.txt

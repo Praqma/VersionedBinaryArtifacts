@@ -46,6 +46,10 @@ class Utils {
     static String gitSha() {
         'git rev-parse --verify HEAD'.execute().text // TODO handle failure
     }
+    @Memoized
+    static String gitBranch(){
+      'git rev-parse --symbolic-full-name HEAD'.execute().text
+    }
 
     static String templateExpand(Map expansions, String input) {
         templateExpand(input, expansions)

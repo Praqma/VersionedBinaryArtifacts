@@ -27,7 +27,7 @@ class BuildPublishing {
 
         Task task = project.tasks.create(name: "create${pubName.capitalize()}", type: Zip) {
             dependsOn executeBuildTask
-            
+
             with project.copySpec(closure)
             from createBuildInfoTask
         }

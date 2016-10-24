@@ -123,13 +123,8 @@ class UberPlugin implements Plugin<Project> {
         }
 
         Sync t3 = createBuildTask('resolveDependencies', Sync) {
-          project.configurations._lib.collect{
-            from {project.zipTree(it)}
-            into buildExtension.resolveDepDir+"/mydir"
-          }
-            //from(project.configurations._lib.collect { project.zipTree(it) })
-            //project.logger.lifecycle project.configurations._lib
-            //into buildExtension.resolveDepDir
+          from(project.configurations._lib.collect { project.zipTree(it) })
+            into buildExtension.resolveDepDir
         }
 
         String taskName = 'executeBuildCommand'
@@ -177,6 +172,7 @@ class UberPlugin implements Plugin<Project> {
                 project.buildproperties.with {
                     println "version        : ${version}"
                     println ""
+                    println "branch         : ${branch}"
                     println "buildCmd       : ${buildCmd}"
                     println "buildWorkingDir: ${buildWorkingDir}"
                     println ""
