@@ -13,13 +13,18 @@ apply plugin: 'net.praqma.uber'
 buildproperties {
     publishing {
       zip {
-	includeEmptyDirs = true
-	into('/hex'){
-       		from file("hello.txt")
-	}
-	into('/bin'){
-		from file("goodbye.txt")
-	}
+	       includeEmptyDirs = true
+	        into("/include"){
+       		   from file("hello.txt")
+	        }
+	        into("bin"){
+		          from file("goodbye.txt")
+	        }
+          into("dep"){
+            from {
+              fileTree(dir:'build/resolvedDep/**', includes: ['*.configure']) as List
+            }
+          }
       }
-    }
+  }
 }

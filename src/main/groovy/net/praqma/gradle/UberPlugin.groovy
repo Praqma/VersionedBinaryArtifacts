@@ -122,14 +122,17 @@ class UberPlugin implements Plugin<Project> {
             template '/templates/buildInfo.properties'
         }
 
+
         Sync t3 = createBuildTask('resolveDependencies', Sync) {
           //from(project.configurations._lib.collect { project.zipTree(it) })
-            //into buildExtension.resolveDepDir+'/'+it.getName()
-            project.configurations._lib.each{
-              from ( project.zipTree(it) )
-              String name = it.getName()
-              into buildExtension.resolveDepDir+'/'+name
+          //into buildExtension.resolveDepDir
+          project.configurations._lib.each {
+            String name = it.getName().split('-')[0]
+            from (project.zipTree(it)){
+              into name
             }
+          }
+          into (buildExtension.resolveDepDir)
         }
 
         String taskName = 'executeBuildCommand'
@@ -169,6 +172,7 @@ class UberPlugin implements Plugin<Project> {
             }
             dependsOn t3
         }
+
 
         createBuildTask('buildInfo', DefaultTask) {
             description "List build properties specific information about the project"
