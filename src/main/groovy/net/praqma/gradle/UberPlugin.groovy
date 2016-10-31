@@ -84,10 +84,12 @@ class UberPlugin implements Plugin<Project> {
                 maven {
                     url contextUrl + buildExtension.dependencySnapshotRepoPath
                 }
+                mavenLocal()
             }
             maven {
                 url contextUrl + buildExtension.dependencyReleaseRepoPath
             }
+            mavenLocal()
         }
     }
 
@@ -120,9 +122,17 @@ class UberPlugin implements Plugin<Project> {
             template '/templates/buildInfo.properties'
         }
 
+
         Sync t3 = createBuildTask('resolveDependencies', Sync) {
-            from(project.configurations._lib.collect { project.zipTree(it) })
-            into buildExtension.resolveDepDir
+          //from(project.configurations._lib.collect { project.zipTree(it) })
+          //into buildExtension.resolveDepDir
+          project.configurations._lib.each {
+            String name = it.getName().split('-')[0]
+            from (project.zipTree(it)){
+              into name
+            }
+          }
+          into (buildExtension.resolveDepDir)
         }
 
         String taskName = 'executeBuildCommand'
@@ -163,6 +173,7 @@ class UberPlugin implements Plugin<Project> {
             dependsOn t3
         }
 
+
         createBuildTask('buildInfo', DefaultTask) {
             description "List build properties specific information about the project"
             doLast {
@@ -170,6 +181,7 @@ class UberPlugin implements Plugin<Project> {
                 project.buildproperties.with {
                     println "version        : ${version}"
                     println ""
+                    println "branch         : ${branch}"
                     println "buildCmd       : ${buildCmd}"
                     println "buildWorkingDir: ${buildWorkingDir}"
                     println ""

@@ -8,6 +8,7 @@ import org.gradle.api.Task
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.tasks.bundling.Zip
 
+
 @CompileStatic
 class BuildPublishing {
 
@@ -25,11 +26,19 @@ class BuildPublishing {
         FileTemplateTask createBuildInfoTask = project.createBuildInfo
         Task executeBuildTask = project.executeBuildCommand
 
+        // Potential
+        //FileTreeTask resolveBuildInfoFiles = project.fetchBuildInfo
+
         Task task = project.tasks.create(name: "create${pubName.capitalize()}", type: Zip) {
             dependsOn executeBuildTask
-            
             with project.copySpec(closure)
-            from createBuildInfoTask
+
+            into ("dep"){
+              from createBuildInfoTask
+              from {
+                project.fileTree(dir:'build/resolvedDep/', include: '**/dep/*.properties', exclude: ['**/bin/', '**/include/', '**/hex/'])
+              }
+            }
         }
 
         project.publishing {

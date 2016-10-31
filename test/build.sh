@@ -1,2 +1,2 @@
-echo "Hello world" > hello.txt
-echo "Goodbye, cruel world" > goodbye.txt
+echo "Tjenare, mannen!" > hello.txt
+echo "hejdaa, gubban" > goodbye.txt
