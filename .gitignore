@@ -9,3 +9,5 @@ gradle-app.setting
 GradleBuildProperties.iml
 gradlebuildProperties.iws
 gradlebuildproperties.iws
+testPull/
+testDev/
