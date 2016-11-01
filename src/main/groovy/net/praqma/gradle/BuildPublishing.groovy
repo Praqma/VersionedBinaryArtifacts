@@ -36,7 +36,7 @@ class BuildPublishing {
             into ("dep"){
               from createBuildInfoTask
               from {
-                project.fileTree(dir:'build/resolvedDep/', include: '**/dep/*.properties', exclude: ['**/bin/', '**/include/', '**/hex/'])
+                project.fileTree(dir:'build/resolvedDep/', include: '**/dep/*.properties', exclude: ['**/bin/', '**/include/', '**/hex/', '**/lib/'])
               }
             }
         }
