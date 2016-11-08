@@ -13,15 +13,16 @@ dependencies {
     compile localGroovy()
 }
 
+
 publishing {
     repositories {
         maven {
-            def s = version.endsWith('-SNAPSHOT') ? 'snapshot' : 'release'
-            url "${artifactory_contextUrl}/plugins-${s}-local"
-            credentials {
-                username artifactory_user
-                password artifactory_password
-            }
+          def s = '$release'==true ? 'release' : 'snapshot'
+          url "${artifactory_contextUrl}/plugins-${s}-local"
+          credentials {
+              username artifactory_user
+              password artifactory_password
+          }
         }
     }
     publications {

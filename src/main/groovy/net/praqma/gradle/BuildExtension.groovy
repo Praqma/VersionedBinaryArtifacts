@@ -46,6 +46,15 @@ class BuildExtension {
         Utils.versionParts(getVersion()).snapshot
     }
 
+    boolean isRelease() {
+        if (project.hasProperty("release")){
+          return '$release'
+        }
+        else{
+          return false
+        }
+    }
+
 
     String getVersion() {
         if (this.@version == null) {

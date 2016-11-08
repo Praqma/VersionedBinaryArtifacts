@@ -76,18 +76,18 @@ class UberPlugin implements Plugin<Project> {
 
     @CompileDynamic
     private void defineRepositoryForDependencies(BuildExtension buildExtension) {
-        boolean isSnapshot = buildExtension.isSnapshotVersion()
+        boolean isRelease = buildExtension.isRelease()
         String contextUrl = project.ext.properties.artifactory_contextUrl
         project.repositories {
             println "Artifactory URL   ==============    : ${contextUrl}"
-            if (isSnapshot) {
+            if (isRelease) {
                 maven {
-                    url contextUrl + buildExtension.dependencySnapshotRepoPath
+                    url contextUrl + buildExtension.dependencyReleaseRepoPath
                 }
                 mavenLocal()
             }
             maven {
-                url contextUrl + buildExtension.dependencyReleaseRepoPath
+                url contextUrl + buildExtension.dependencySnapshotRepoPath
             }
             mavenLocal()
         }
@@ -212,8 +212,8 @@ class UberPlugin implements Plugin<Project> {
         if (repoUser == null || repoPassword == null) {
             project.logger.lifecycle "Incomplete credentials for artifact repository. No publishing"
         } else {
-            boolean isSnapshot = extension.isSnapshotVersion()
-            String repoUrl = "${contextUrl}${isSnapshot ? extension.publishingSnapshotRepoPath : extension.publishingReleaseRepoPath}"
+            boolean isRelease = extension.isRelease()
+            String repoUrl = "${contextUrl}${isRelease ? extension.publishingReleaseRepoPath : extension.publishingSnapshotRepoPath}"
             project.publishing {
                 repositories {
                     maven {
