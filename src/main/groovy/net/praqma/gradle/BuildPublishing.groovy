@@ -45,7 +45,7 @@ class BuildPublishing {
             publications {
                 "${pubName}"(MavenPublication) {
                     groupId extension.group
-                    version extension.version + "${extension.isRelease() ? '' : '-SNAPSHOT'}"
+                    version extension.version
                     artifactId extension.artifact
 
                     artifact task

@@ -14,6 +14,8 @@ class UberPlugin implements Plugin<Project> {
 
     private Project project
 
+    private Boolean isRelease
+
     @Override
     void apply(Project project) {
         this.project = project
@@ -22,6 +24,8 @@ class UberPlugin implements Plugin<Project> {
         project.apply(plugin: 'maven-publish')
 
         BuildExtension extension = project.extensions.create('buildproperties', BuildExtension, project) as BuildExtension
+
+        isRelease = project.properties.release
 
         File buildDefFile = project.file('build.properties')
 
@@ -42,15 +46,18 @@ class UberPlugin implements Plugin<Project> {
     }
 
     /**
-     * Parse build definition, store info in the extension
+     * Parse build definition, store info in the extension'
      */
     private void parseBuildDefinition(InputStream input, BuildExtension buildExtension) {
         Properties props = new Properties()
         props.load(input)
-
         // Set properties not subject to template expansion
+        String versionFull = props.version
+        if (!isRelease){
+            versionFull+='-SNAPSHOT'
+        }
         buildExtension.with {
-            version = props.version
+            version = versionFull
             group = props.group ?: 'net.praqma'
         }
         Map expansions = buildExtension.expansions
@@ -76,7 +83,6 @@ class UberPlugin implements Plugin<Project> {
 
     @CompileDynamic
     private void defineRepositoryForDependencies(BuildExtension buildExtension) {
-        boolean isRelease = buildExtension.isRelease()
         String contextUrl = project.ext.properties.artifactory_contextUrl
         project.repositories {
             println "Artifactory URL   ==============    : ${contextUrl}"
@@ -212,7 +218,6 @@ class UberPlugin implements Plugin<Project> {
         if (repoUser == null || repoPassword == null) {
             project.logger.lifecycle "Incomplete credentials for artifact repository. No publishing"
         } else {
-            boolean isRelease = extension.isRelease()
             String repoUrl = "${contextUrl}${isRelease ? extension.publishingReleaseRepoPath : extension.publishingSnapshotRepoPath}"
             project.publishing {
                 repositories {

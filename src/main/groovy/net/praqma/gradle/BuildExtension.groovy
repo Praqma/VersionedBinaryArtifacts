@@ -19,6 +19,8 @@ class BuildExtension {
     String artifact
     String productName
 
+    Boolean isRelease
+
     String buildCmd
     File buildWorkingDir
 
@@ -45,16 +47,6 @@ class BuildExtension {
     boolean isSnapshotVersion() {
         Utils.versionParts(getVersion()).snapshot
     }
-
-    boolean isRelease() {
-        if (project.hasProperty("release")){
-          return '$release'
-        }
-        else{
-          return false
-        }
-    }
-
 
     String getVersion() {
         if (this.@version == null) {
