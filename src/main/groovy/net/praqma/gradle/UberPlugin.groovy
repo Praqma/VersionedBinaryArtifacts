@@ -25,7 +25,7 @@ class UberPlugin implements Plugin<Project> {
 
         BuildExtension extension = project.extensions.create('buildproperties', BuildExtension, project) as BuildExtension
 
-        isRelease = project.properties.release
+        isRelease = project.hasProperty("release") ? project.properties.release : false
 
         File buildDefFile = project.file('build.properties')
 
