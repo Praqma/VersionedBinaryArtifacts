@@ -14,7 +14,7 @@ class UberPlugin implements Plugin<Project> {
 
     private Project project
 
-    private Boolean isRelease
+    private boolean isRelease
 
     @Override
     void apply(Project project) {
