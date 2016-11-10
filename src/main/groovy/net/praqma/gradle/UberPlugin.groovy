@@ -219,14 +219,12 @@ class UberPlugin implements Plugin<Project> {
             project.logger.lifecycle "Incomplete credentials for artifact repository. No publishing"
         } else {
             String repoUrl = "${contextUrl}${isRelease ? extension.publishingReleaseRepoPath : extension.publishingSnapshotRepoPath}"
-            project.publishing {
-                repositories {
-                    maven {
-                        url repoUrl
-                        credentials {
-                            username repoUser
-                            password repoPassword
-                        }
+            project.publishing.repositories {
+                maven {
+                    url repoUrl
+                    credentials {
+                        username repoUser
+                        password repoPassword
                     }
                 }
             }
