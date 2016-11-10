@@ -3,15 +3,13 @@ buildscript {
       mavenLocal()
     }
     dependencies {
-        classpath "net.praqma.gradle:GradleBuildProperties:1.0.1-SNAPSHOT"
+        classpath "net.praqma.gradle:GradleBuildProperties:2.0.0-SNAPSHOT"
     }
     configurations.classpath.resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
 apply plugin: 'net.praqma.uber'
 
-
-buildproperties {
-    publishing {
+buildproperties.publishing {
       zip {
 	       includeEmptyDirs = true
 	        into("/include"){
@@ -22,9 +20,8 @@ buildproperties {
 	        }
           into("dep"){
             from {
-              fileTree(dir:'build/resolvedDep/**', includes: ['*.configure']) as List
+              fileTree(dir:'build/resolvedDep/**', includes: ['*.properties']) as List
             }
           }
       }
   }
-}

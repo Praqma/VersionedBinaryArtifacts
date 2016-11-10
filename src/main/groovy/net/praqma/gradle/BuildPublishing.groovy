@@ -41,8 +41,7 @@ class BuildPublishing {
             }
         }
 
-        project.publishing {
-            publications {
+        project.publishing.publications {
                 "${pubName}"(MavenPublication) {
                     groupId extension.group
                     version extension.version
@@ -50,7 +49,6 @@ class BuildPublishing {
 
                     artifact task
                 }
-            }
         }
     }
 }

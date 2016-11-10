@@ -19,8 +19,6 @@ class BuildExtension {
     String artifact
     String productName
 
-    Boolean isRelease
-
     String buildCmd
     File buildWorkingDir
 

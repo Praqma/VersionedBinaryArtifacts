@@ -13,8 +13,7 @@ dependencies {
     compile localGroovy()
 }
 
-publishing {
-    repositories {
+publishing.repositories {
         maven {
           def s = version.endsWith('-SNAPSHOT') ? 'snapshot' : 'release'
           url "${artifactory_contextUrl}/plugins-${s}-local"
@@ -23,11 +22,10 @@ publishing {
               password artifactory_password
           }
         }
-    }
-    publications {
+}
+publishing.publications {
         maven(MavenPublication) {
             artifactId artifact
             from components.java
         }
-    }
 }

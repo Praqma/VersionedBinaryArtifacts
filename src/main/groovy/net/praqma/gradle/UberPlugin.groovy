@@ -25,7 +25,12 @@ class UberPlugin implements Plugin<Project> {
 
         BuildExtension extension = project.extensions.create('buildproperties', BuildExtension, project) as BuildExtension
 
-        isRelease = project.hasProperty("release") ? project.properties.release : false
+        if (project.hasProperty("release")){
+          isRelease = (project.properties.release == 'true') ? true : false
+        }
+        else{
+          isRelease = false
+        }
 
         File buildDefFile = project.file('build.properties')
 
@@ -53,7 +58,7 @@ class UberPlugin implements Plugin<Project> {
         props.load(input)
         // Set properties not subject to template expansion
         String versionFull = props.version
-        if (!isRelease){
+        if (isRelease==false){
             versionFull+='-SNAPSHOT'
         }
         buildExtension.with {
