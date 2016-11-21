@@ -1,2 +1,4 @@
-echo "Tjenare, mannen!" > hello.txt
-echo "hejdaa, gubban" > goodbye.txt
+#!/bin/bash
+set -e
+gcc -c lib_test.c -o lib_test.o
+ar rcs libtest.a lib_test.o

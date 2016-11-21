@@ -9,10 +9,13 @@ buildscript {
 }
 apply plugin: 'net.praqma.uber'
 
-buildproperties.publishing {
+
+buildproperties {
+    publishing {
       zip {
-          into("lib"){
-              from file("libtest.a")
-          }
+        into("bin"){
+          from file("testapp")
+        }
       }
   }
+}
