@@ -11,3 +11,6 @@ gradlebuildProperties.iws
 gradlebuildproperties.iws
 testPull/
 testDev/
+
+*.o
+*.a
