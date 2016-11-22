@@ -41,10 +41,23 @@ class Utils {
                 preReleaseVersion : preReleaseVersion
         ]
     }
+    static boolean isSubmodule(){
+      if (['sh', '-c', 'cd "$(git rev-parse --show-toplevel)/.." && git rev-parse --is-inside-work-tree'].execute().text){
+        return true
+      }
+      else{
+      return false
+    }
+    }
 
     @Memoized
     static String gitSha() {
-        'git rev-parse --verify HEAD'.execute().text // TODO handle failure
+      if (isSubmodule()){
+        ['sh', '-c', 'cd .. && git rev-parse --verify HEAD'].execute().text
+      }
+      else{
+        'git rev-parse --verify HEAD'.execute().text
+      }
     }
     @Memoized
     static String gitBranch(){
