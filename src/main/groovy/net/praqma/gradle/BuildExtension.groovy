@@ -60,6 +60,7 @@ class BuildExtension {
         [
                 sha           : Utils.gitSha(),
                 branch        : Utils.gitBranch(),
+                submodules    : Utils.gitSubmodules(),
                 osFamily      : osFamily,
                 buildNumber   : buildNumber,
                 buildUrl      : buildUrl,
