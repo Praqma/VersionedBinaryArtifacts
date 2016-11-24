@@ -59,17 +59,6 @@ class Utils {
         'git rev-parse --verify HEAD'.execute().text
       }
     }
-
-    @Memoized
-    static String gitSubmodules(){
-      if (isSubmodule()){
-        ['sh','-c','cd .. && git submodule status'].execute().text
-      }
-      else{
-        'Project does not contain submodule'
-      }
-    }
-
     @Memoized
     static String gitBranch(){
       'git rev-parse --symbolic-full-name HEAD'.execute().text
