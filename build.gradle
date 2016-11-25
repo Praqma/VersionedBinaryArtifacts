@@ -1,7 +1,7 @@
 apply plugin: 'groovy'
 apply plugin: 'maven-publish'
 
-version = '2.0.0-SNAPSHOT'
+version = '2.0.3-SNAPSHOT'
 group = 'net.praqma.gradle'
 
 def artifact = 'GradleBuildProperties'

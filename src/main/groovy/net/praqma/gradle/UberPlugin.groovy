@@ -92,14 +92,14 @@ class UberPlugin implements Plugin<Project> {
         project.repositories {
             println "Artifactory URL   ==============    : ${contextUrl}"
             if(contextUrl) {
-                if (isRelease) {
+                if (buildExtension.dependencies && buildExtension.dependencies[0].endsWith('-SNAPSHOT')) {
                     maven {
-                        url contextUrl + buildExtension.dependencyReleaseRepoPath
+                        url contextUrl + buildExtension.dependencySnapshotRepoPath
                     }
                     mavenLocal()
                 }
                 maven {
-                    url contextUrl + buildExtension.dependencySnapshotRepoPath
+                    url contextUrl + buildExtension.dependencyReleaseRepoPath
                 }
             }
             mavenLocal()
