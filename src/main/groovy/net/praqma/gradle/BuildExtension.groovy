@@ -61,6 +61,10 @@ class BuildExtension {
                 sha           : Utils.gitSha(),
                 branch        : Utils.gitBranch(),
                 osFamily      : osFamily,
+                targetArch    :
+                    project.hasProperty("targetArch") ?
+                         project.properties.targetArch :
+                         osFamily,
                 buildNumber   : buildNumber,
                 buildUrl      : buildUrl,
                 resolvedDepDir: resolveDepDir,
