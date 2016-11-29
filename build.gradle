@@ -2,9 +2,9 @@ apply plugin: 'groovy'
 apply plugin: 'maven-publish'
 
 version = '2.0.0-SNAPSHOT'
-group = 'net.praqma.gradle'
+group = 'net.praqma'
 
-def artifact = 'GradleBuildProperties'
+def artifact = 'VersionedBinaryArtifacts'
 
 sourceCompatibility = targetCompatibility = '1.7'
 
