@@ -3,7 +3,7 @@ A gradle plugin to allow a build be defined in a properties file:
 
 ````
 group=net.praqma
-version=1.0.5-SNAPSHOT
+version=1.0.5
 artifact=demo-project-${osFamily}
 buildWorkingDir=.
 buildCmd=${osFamily == 'win32' ? 'build.bat' : './build.sh'}
@@ -50,16 +50,25 @@ Or all in one:
 
 ## Opinionated
 
-Assumes Artifactory
-
-If the version contains SNAPSHOT, then it publishes to the libs-snapshot-local repo
-Otherwise it publishes to libs-release-local
-
-All dependencies are
-
-The repository is selected based on the version in the build.properties file:
+Assumes Artifactory with standard paths for artifacts
 
 ````
 libs-snapshot-local
 libs-release-local
 ````
+The destination repository is determined by the parameter 'release' (default false)
+
+eg:
+
+````
+./gradlew publish -P release=true
+````
+will publish the artifact to libs.release.local
+
+````
+./gradlew publish -P release=false || ./gradlew publish
+````
+will append '-SNAPSHOT' to version number in build.properties and publish the artifact to libs.snapshot.local
+
+
+
