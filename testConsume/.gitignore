@@ -1,2 +1,5 @@
 build/
 testapp
+apptest
+build.h
+version.h

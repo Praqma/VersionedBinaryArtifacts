@@ -49,6 +49,16 @@ class Utils {
       return false
     }
     }
+    @Memoized
+   static String gitSubmodules(){
+      if (isSubmodule()){
+         ['sh','-c','cd .. && git submodule status'].execute().text
+      }
+      else{
+         'Project does not contain submodule'
+       }
+    }
+
 
     @Memoized
     static String gitSha() {
