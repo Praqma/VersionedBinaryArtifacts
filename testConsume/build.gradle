@@ -14,7 +14,7 @@ buildproperties {
     publishing {
       zip {
         into("bin"){
-          from file("testapp")
+          from file("apptest")
         }
       }
   }

@@ -50,7 +50,7 @@ class Utils {
     }
     }
     @Memoized
-   static String gitSubmodules(){
+   static String gitSubmodule(){
       if (isSubmodule()){
          ['sh','-c','cd .. && git submodule status'].execute().text
       }
