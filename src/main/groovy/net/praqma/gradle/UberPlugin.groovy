@@ -92,7 +92,7 @@ class UberPlugin implements Plugin<Project> {
         project.repositories {
             println "Artifactory URL   ==============    : ${contextUrl}"
             if(contextUrl) {
-                if (buildExtension.dependencies && buildExtension.dependencies[0].endsWith('-SNAPSHOT')) {
+                if (buildExtension.dependencies && (buildExtension.dependencies.any {it.endsWith('-SNAPSHOT')})) {
                   if(isRelease){
                     throw new Exception("Cannot base release on snapshots")
                   }
