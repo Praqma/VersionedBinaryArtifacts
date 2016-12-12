@@ -3,7 +3,7 @@ buildscript {
       mavenLocal()
     }
     dependencies {
-        classpath "net.praqma.gradle:GradleBuildProperties:2.0.0-SNAPSHOT"
+        classpath "net.praqma:VersionedBinaryArtifacts:2.0.0-SNAPSHOT"
     }
     configurations.classpath.resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
@@ -14,8 +14,26 @@ buildproperties {
     publishing {
       zip {
         into("bin"){
-          from file("testapp")
+          from file("apptest")
         }
       }
   }
+}
+
+task apiJar(type: Zip) {
+    baseName "publishing-api"
+    into("src"){
+        from file("main.c")
+    }
+
+}
+
+publishing.publications {
+    api(MavenPublication) {
+        groupId 'net.praqma'
+        artifactId 'project2-api'
+        version '2.0.0'
+
+        artifact apiJar
+    }
 }

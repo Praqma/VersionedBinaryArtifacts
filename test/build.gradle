@@ -3,7 +3,7 @@ buildscript {
       mavenLocal()
     }
     dependencies {
-        classpath "net.praqma.gradle:GradleBuildProperties:2.0.0-SNAPSHOT"
+        classpath "net.praqma:VersionedBinaryArtifacts:2.0.0-SNAPSHOT"
     }
     configurations.classpath.resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
@@ -15,4 +15,5 @@ buildproperties.publishing {
               from file("libtest.a")
           }
       }
+
   }
