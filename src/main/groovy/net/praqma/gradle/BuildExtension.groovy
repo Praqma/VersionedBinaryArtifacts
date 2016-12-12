@@ -62,6 +62,10 @@ class BuildExtension {
                 branch        : Utils.gitBranch(),
                 submodule     : Utils.gitSubmodule(),
                 osFamily      : osFamily,
+                targetArch    :
+                    project.hasProperty("targetArch") ?
+                         project.properties.targetArch :
+                         osFamily,
                 buildNumber   : buildNumber,
                 buildUrl      : buildUrl,
                 resolvedDepDir: resolveDepDir,
