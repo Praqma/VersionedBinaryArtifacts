@@ -3,7 +3,7 @@
 #ifndef _VERSION_H_
 #define _VERSION_H_
 
-#define PRODUCT_NAME  "${productName}"
+#define PRODUCT_NAME  "${artifact}"
 #define MAJOR_VERSION ${majorVersion}
 #define MINOR_VERSION ${minorVersion}
 #define PATCH_VERSION ${patchVersion}
@@ -14,7 +14,7 @@
 
 #define VERSION_STRING xstr(MAJOR_VERSION) "."  xstr(MINOR_VERSION) "." xstr(PATCH_VERSION) PRE_RELEASE_VERSION
 #include "build.h"
-#define BUILD_STRING VERSION_STRING "+" xstr(BUILD_NUMBER)  ".sha." xstr(BUILD_SHA) 
+#define BUILD_STRING VERSION_STRING "+" xstr(BUILD_NUMBER)  ".sha." xstr(BUILD_SHA)
 #define PRODUCT_STRING PRODUCT_NAME "-" BUILD_STRING
 
 

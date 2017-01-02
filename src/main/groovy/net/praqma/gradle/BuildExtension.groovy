@@ -69,7 +69,8 @@ class BuildExtension {
                 buildNumber   : buildNumber,
                 buildUrl      : buildUrl,
                 resolvedDepDir: resolveDepDir,
-                productName   : productName
+                productName   : productName,
+                artifact      : artifact
         ] + (Utils.versionParts(version) as Map)
     }
 
