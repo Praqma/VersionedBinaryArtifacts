@@ -56,7 +56,7 @@ Assumes connection to Artifactory with standard paths for artifacts
 libs-snapshot-local
 libs-release-local
 ````
-First time gradle wrapper is exectued, gradle creates a .gradle folder located in ~/ . Here you must 'gradle.properties' containing necessary parameters for a successful connection to Artifactory.
+First time gradle wrapper is exectued, gradle creates a .gradle folder located in ~/ . Here you must add 'gradle.properties', containing necessary parameters for a successful connection to Artifactory.
 
  ````
 artifactory_user=*artifactuserwithwriteaccess*
