@@ -58,13 +58,13 @@ buildscript {
       mavenLocal()
     }
     dependencies {
-        classpath "net.praqma:VersionedBinaryArtifacts:2.0.5"
+        classpath "net.praqma:VersionedBinaryArtifacts:2.0.5" // 1)
     }
     configurations.classpath.resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
-apply plugin: 'net.praqma.uber'
+apply plugin: 'net.praqma.uber' // 2)
 
-buildproperties.publishing {
+buildproperties.publishing { // 3)
       zip {
           into("lib"){
               from file("libtest.a")
@@ -73,9 +73,12 @@ buildproperties.publishing {
 ````
 
 This file has three major roles:
-1. _Deciding the path, name and version of the dependency_
-2. _How to apply the plugin_
-3. _How to select which files to be included in the artifact_
+
+1. Deciding the path, name and version of the dependency
+
+2. How to apply the plugin
+
+3. How to select which files to be included in the artifact
 
 ## Artifactory setup
 
