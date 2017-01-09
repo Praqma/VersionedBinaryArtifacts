@@ -48,14 +48,22 @@ Or all in one:
 
     ./gradlew pTML && pushd test && ../gradlew pTML && popd
 
-## Opinionated
+## Artifactory setup
 
-Assumes Artifactory with standard paths for artifacts
+Assumes connection to Artifactory with standard paths for artifacts
 
 ````
 libs-snapshot-local
 libs-release-local
 ````
+First time gradle wrapper is exectued, gradle creates a .gradle folder located in ~/ . Here you must 'gradle.properties' containing necessary parameters for a successful connection to Artifactory.
+
+ ````
+artifactory_user=*artifactuserwithwriteaccess*
+artifactory_password=*artifactuserpassword*
+artifactory_contextUrl=http://127.0.0.1:8080/artifactory
+ ````
+
 The destination repository is determined by the parameter 'release' (default false)
 
 eg:
@@ -69,6 +77,3 @@ will publish the artifact to libs.release.local
 ./gradlew publish -P release=false || ./gradlew publish
 ````
 will append '-SNAPSHOT' to version number in build.properties and publish the artifact to libs.snapshot.local
-
-
-
