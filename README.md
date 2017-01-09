@@ -48,19 +48,48 @@ Or all in one:
 
     ./gradlew pTML && pushd test && ../gradlew pTML && popd
 
+
+
+The 'test' project also contains the build.gradle file:
+
+````
+buildscript {
+    repositories {
+      mavenLocal()
+    }
+    dependencies {
+        classpath "net.praqma:VersionedBinaryArtifacts:2.0.5"
+    }
+    configurations.classpath.resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+apply plugin: 'net.praqma.uber'
+
+buildproperties.publishing {
+      zip {
+          into("lib"){
+              from file("libtest.a")
+          }
+      }
+````
+
+This file has three major roles:
+1. _Deciding the path, name and version of the dependency_
+2. _How to apply the plugin_
+3. _How to select which files to be included in the artifact_
+
 ## Artifactory setup
 
-Assumes connection to Artifactory with standard paths for artifacts
+Assumes access to Artifactory with standard paths for artifacts
 
 ````
 libs-snapshot-local
 libs-release-local
 ````
-First time gradle wrapper is exectued, gradle creates a .gradle folder located in ~/ . Here you must add 'gradle.properties', containing necessary parameters for a successful connection to Artifactory.
+First time gradle wrapper is exectued, gradle creates a .gradle folder located in ~/ . Here you must add the file 'gradle.properties', containing necessary parameters for a successful connection to Artifactory.
 
  ````
-artifactory_user=*artifactuserwithwriteaccess*
-artifactory_password=*artifactuserpassword*
+artifactory_user=*artifactUserWithWriteAccess*
+artifactory_password=*artifactUserPassword*
 artifactory_contextUrl=http://127.0.0.1:8080/artifactory
  ````
 
@@ -76,4 +105,14 @@ will publish the artifact to libs.release.local
 ````
 ./gradlew publish -P release=false || ./gradlew publish
 ````
-will append '-SNAPSHOT' to version number in build.properties and publish the artifact to libs.snapshot.local
+will append '-SNAPSHOT' to version number declared in build.properties and publish the artifact to libs.snapshot.local
+
+# Resolving dependencies
+The binary dependencies needed for the build is, as mentioned, added to the build.properties file, separated by comma.  
+
+_Snapshot artifacts can be based on both snapshots and release artifacts_
+_Release artifacts can only be based on other release artifacts_  
+
+Fetching the dependencies without building the project is done with:
+
+`./gradlew resolveDep`
