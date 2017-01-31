@@ -42,7 +42,7 @@ class Utils {
         ]
     }
     static boolean isSubmodule(){
-      if (['sh', '-c', 'cd "$(git rev-parse --show-toplevel)/.." && git rev-parse --is-inside-work-tree'].execute().text){
+      if (['bash', '-c', "cd .. && git rev-parse --is-inside-work-tree"].execute().text){
         return true
       }
       else{
@@ -52,7 +52,7 @@ class Utils {
     @Memoized
    static String gitSubmodule(){
       if (isSubmodule()){
-         ['sh','-c','cd .. && git submodule status'].execute().text
+         ['bash','-c','cd .. && git submodule status | awk "{print \$1, \$2}")'].execute().text
       }
       else{
          'Project does not contain submodule'
@@ -63,7 +63,7 @@ class Utils {
     @Memoized
     static String gitSha() {
       if (isSubmodule()){
-        ['sh', '-c', 'cd .. && git rev-parse --verify HEAD'].execute().text
+        ['bash', '-c', 'cd .. && git rev-parse --verify HEAD'].execute().text
       }
       else{
         'git rev-parse --verify HEAD'.execute().text

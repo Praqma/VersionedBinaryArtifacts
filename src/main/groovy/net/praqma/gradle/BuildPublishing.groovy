@@ -26,8 +26,7 @@ class BuildPublishing {
         FileTemplateTask createBuildInfoTask = project.createBuildInfo
         Task executeBuildTask = project.executeBuildCommand
 
-        // Potential
-        //FileTreeTask resolveBuildInfoFiles = project.fetchBuildInfo
+
 
         Task task = project.tasks.create(name: "create${pubName.capitalize()}", type: Zip) {
             dependsOn executeBuildTask
