@@ -1,4 +1,7 @@
 language: java
+branches:
+  only:
+    - develop
 script:
     ./gradlew pTML && pushd test && ../gradlew pTML && popd && pushd testConsume && ../gradlew pTML && popd
-after_success: git fetch && git checkout master && git pull origin master && git merge develop && git push origin master
+after_success: git checkout -t -b master origin/master && git pull origin master && git merge develop && git push origin master
