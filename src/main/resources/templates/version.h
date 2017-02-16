@@ -3,7 +3,7 @@
 #ifndef _VERSION_H_
 #define _VERSION_H_
 
-#define PRODUCT_NAME  "${artifact}"
+#define PRODUCT_NAME  "${productName}"
 #define MAJOR_VERSION ${majorVersion}
 #define MINOR_VERSION ${minorVersion}
 #define PATCH_VERSION ${patchVersion}

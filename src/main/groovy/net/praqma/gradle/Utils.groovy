@@ -52,7 +52,7 @@ class Utils {
     @Memoized
    static String gitSubmodule(){
       if (isSubmodule()){
-         ['bash','-c','cd .. && git submodule status | awk "{print \$1, \$2}")'].execute().text
+         ["bash","-c","cd .. && git submodule status | awk '{print \$1, \$2}')"].execute().text
       }
       else{
          'Project does not contain submodule'

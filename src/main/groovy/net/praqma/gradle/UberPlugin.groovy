@@ -140,9 +140,7 @@ class UberPlugin implements Plugin<Project> {
 
 
         Sync t3 = createBuildTask('resolveDependencies', Sync) {
-          //from(project.configurations._lib.collect { project.zipTree(it) })
-          //into buildExtension.resolveDepDir
-          project.configurations._lib.each {
+          project.configurations._lib.collect {
             String name = it.getName().split('-')[0]
             from (project.zipTree(it)){
               into name

@@ -62,10 +62,7 @@ class BuildExtension {
                 branch        : Utils.gitBranch(),
                 submodule     : Utils.gitSubmodule(),
                 osFamily      : osFamily,
-                targetArch    :
-                    project.hasProperty("targetArch") ?
-                         project.properties.targetArch :
-                         osFamily,
+                targetArch    : project.hasProperty("targetArch") ? project.properties.targetArch : osFamily,
                 buildNumber   : buildNumber,
                 buildUrl      : buildUrl,
                 resolvedDepDir: resolveDepDir,
@@ -77,9 +74,9 @@ class BuildExtension {
     // Some read-only properties
     final String osFamily = Utils.osFamily()
 
-    final String buildNumber = System.getenv('BUILD_NUMBER') ?: '0'
+    final String buildNumber = System.getenv("BUILD_NUMBER") ?: '0'
 
-    final String buildUrl = System.getenv('BUILD_URL') ?: "DEVELOPER"
+    final String buildUrl = System.getenv("BUILD_URL") ?: "DEVELOPER"
 
     String getResolveDepDir() {
         "${project.buildDir}/resolvedDep"
