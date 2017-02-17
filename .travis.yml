@@ -2,8 +2,9 @@ language: java
 branches:
   only:
   - develop
-script: ./gradlew pTML && pushd test && ../gradlew pTML && popd && pushd testConsume
-  && ../gradlew pTML && popd
-after_success: git config user.name "naesheim" git fetch origin master:refs/remotes/origin/master && git checkout
-  -b master origin/master && git merge develop && git push "https://${GITHUB_SECRET_TOKEN}@github.com/Praqma/VersionedBinaryArtifacts.git" -u origin master
-secure: "t1mOB/wsodXeHdCTaXNnwh1Ez2fhs83fQSQncVzi9mFhelH3+avqpTeMhHeI6DK424PQbF+WK3iW5PPfLVPEPjDSpYeekTVzWQZ7xZXBUqSaPmAEQGAOO7nYw9dr2mbY+id/34WIo33B3RAdajvkFnsgc+L4u/pLK3YnSGaoHqwiZAhiAM+mFXQ3zG2z42CHiO7NtICVmvQQe1EHNkOTmGdd121pmhmqM2fmpP0tbFXTSlnGzZUd7YdNrdIYY6dVOBMIaRZV7XrOiuDe72p3BkB3/WAYbnXgGzwczJZ7N060bNA/Clw1Epr1a3ULa+fChFZhEYJVQjp0HZRM04tNZKndNvr+9RAEdzn2RrzeCdAkDrNVWoPPvXDeZg5JDVgjK1+JVTZl6v+GKMAMzqj/VFn9REGQADP1sdzhNsHX9qonjhqkSur9dN8HpMbHhyXSfAVmj0noT/yM0WokfTDm4hNvGOMUwuxUD2JXFuqU9WYHKLkZ+R8fsJ38uzC79XeK8WPtaOaSWlDzG1G+chSVwfS+IHXijUV5mL79+9t53O/jG9bcJ3rDm5oNBbQypMGXvy98nhTU/uXllOKCvqOhS6ORGJL1Ij7offgW+4Fmv7vs67VVuXajkK5UJ+eWySdeelYwg/DByYlkEe7gCDmQGymBZuEmAQ81c4MONrvr1yk="
+before_script: ./tavis/pre_build.sh
+script: .travis/build.sh
+after_success: .travis/post_build_success.sh
+env:
+  global:
+   - secure: "t1mOB/wsodXeHdCTaXNnwh1Ez2fhs83fQSQncVzi9mFhelH3+avqpTeMhHeI6DK424PQbF+WK3iW5PPfLVPEPjDSpYeekTVzWQZ7xZXBUqSaPmAEQGAOO7nYw9dr2mbY+id/34WIo33B3RAdajvkFnsgc+L4u/pLK3YnSGaoHqwiZAhiAM+mFXQ3zG2z42CHiO7NtICVmvQQe1EHNkOTmGdd121pmhmqM2fmpP0tbFXTSlnGzZUd7YdNrdIYY6dVOBMIaRZV7XrOiuDe72p3BkB3/WAYbnXgGzwczJZ7N060bNA/Clw1Epr1a3ULa+fChFZhEYJVQjp0HZRM04tNZKndNvr+9RAEdzn2RrzeCdAkDrNVWoPPvXDeZg5JDVgjK1+JVTZl6v+GKMAMzqj/VFn9REGQADP1sdzhNsHX9qonjhqkSur9dN8HpMbHhyXSfAVmj0noT/yM0WokfTDm4hNvGOMUwuxUD2JXFuqU9WYHKLkZ+R8fsJ38uzC79XeK8WPtaOaSWlDzG1G+chSVwfS+IHXijUV5mL79+9t53O/jG9bcJ3rDm5oNBbQypMGXvy98nhTU/uXllOKCvqOhS6ORGJL1Ij7offgW+4Fmv7vs67VVuXajkK5UJ+eWySdeelYwg/DByYlkEe7gCDmQGymBZuEmAQ81c4MONrvr1yk="
