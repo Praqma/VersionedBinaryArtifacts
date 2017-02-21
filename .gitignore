@@ -12,6 +12,11 @@ gradlebuildproperties.iws
 testPull/
 testDev/
 testDep/
+test/version.h
+test/build.sh
+testConsume/version.h
+testConsume/build.h
+testConsume/apptest
 
 *.o
 *.a

@@ -24,6 +24,8 @@ In the properties file you can describe:
  - Automatic pre-build generation of a version.h and build.h to use in the build process
  - Creation of a buildInfo.properties:
 
+buildInfo.properties uses build_number and build_url from Jenkins build environment.
+
 ````
 BUILD_TIMESTAMP=Wed Nov 04 15:05:20 CET 2015
 BUILD_NUMBER=0
@@ -74,11 +76,23 @@ buildproperties.publishing { // 3)
 
 This file has three major roles:
 
-1. Deciding the path, name and version of the dependency
+1. Deciding the path, name and version of the plugin
 
 2. How to apply the plugin
 
 3. How to select which files to be included in the artifact
+
+## Alternative fetch of plugin
+
+https://plugins.gradle.org/plugin/net.praqma.gradle.uber
+
+in build.gradle file add:
+
+plugins {
+  id "net.praqma.gradle.uber" version "<version>"
+}
+
+This plugin will then be downloaded from plugins.gradle.org
 
 ## Artifactory setup
 
