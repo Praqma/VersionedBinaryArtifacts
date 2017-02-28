@@ -2,4 +2,4 @@ branches:
   only:
   - master
 build_script:
-  - ps: gradlew.bat pTML && pushd test && ../gradlew.bat pTML && popd && pushd testConsume && ../gradlew.bat pTML && popd
+  - ps: gradlew.bat pTML; pushd test; ../gradlew.bat pTML popd; pushd testConsume; ../gradlew.bat pTML; popd
