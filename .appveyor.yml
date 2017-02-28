@@ -1,0 +1,4 @@
+branches:
+  only:
+  - master
+build_script: .travis/build.sh
