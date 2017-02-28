@@ -1,7 +1,7 @@
 branches:
   only:
   - master
+install:
+  - gradlew.bat
 build_script:
-  - ps: gradlew pTML 
-  - ps: pushd test; ..\gradlew pTML
-  - ps: pushd testConsume; ..\gradlew pTML
+  - gradlew pTML; pushd test; ..\gradlew pTML; popd; pushd testConsume; ..\gradlew pTML && popd
