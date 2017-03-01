@@ -5,3 +5,5 @@ install:
   - gradlew.bat
 build_script:
   - sh: sh .travis\build.sh
+cache:
+  - C:\Users\appveyor\.gradle
