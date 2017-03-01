@@ -4,6 +4,4 @@ branches:
 install:
   - gradlew.bat
 build_script:
-  - sh: gradlew pTML
-  - sh: cd test ; echo pwd ; ..\gradlew pTML
-  - sh: cd testConsume ; echo pwd ; ..\gradlew pTML
+  - sh: sh .travis\build.sh
