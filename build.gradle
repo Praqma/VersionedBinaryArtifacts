@@ -34,7 +34,6 @@ pluginBundle {
   }
 }
 
-
 dependencies {
     compile gradleApi()
     compile localGroovy()

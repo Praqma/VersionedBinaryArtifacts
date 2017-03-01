@@ -4,4 +4,4 @@ branches:
 install:
   - gradlew.bat
 build_script:
-  - gradlew pTML; pushd test; ..\gradlew pTML; popd; pushd testConsume; ..\gradlew pTML && popd
+  - gradlew pTML ; pushd test ; ..\gradlew pTML ; popd ; pushd testConsume ; ..\gradlew pTML

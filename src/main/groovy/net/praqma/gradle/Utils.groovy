@@ -6,7 +6,6 @@ import groovy.transform.Memoized
 import org.apache.tools.ant.taskdefs.condition.Os
 import org.gradle.api.GradleException
 
-@CompileStatic
 class Utils {
 
     private static final String SNAPSHOT_VERSION_SUFFIX = '-SNAPSHOT'
