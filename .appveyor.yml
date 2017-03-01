@@ -5,5 +5,5 @@ install:
   - gradlew.bat
 build_script:
   - gradlew pTML
-  - pushd test; ..\gradlew pTML
-  - pushd testConsume; ..\gradlew pTML
+  - cd test && ..\gradlew pTML
+  - cd testConsume && ..\gradlew pTML
