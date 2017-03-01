@@ -81,9 +81,11 @@ class UberPlugin implements Plugin<Project> {
         project.version = buildExtension.version
         project.group = buildExtension.group
 
+        /*
         project.gradle.projectsEvaluated {
             project.configurations.all { Configuration c -> c.resolutionStrategy.cacheChangingModulesFor 0, 'seconds' }
         }
+        */
     }
 
     @CompileDynamic
