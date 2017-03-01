@@ -4,6 +4,6 @@ branches:
 install:
   - gradlew.bat
 build_script:
-  - gradlew pTML
-  - cd test && echo %cd% && ..\gradlew pTML
-  - cd testConsume && echo %cd% && ..\gradlew pTML
+  - sh: gradlew pTML
+  - sh: cd test ; echo pwd ; ..\gradlew pTML
+  - sh: cd testConsume ; echo pwd ; ..\gradlew pTML
