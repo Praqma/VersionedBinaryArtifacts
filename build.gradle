@@ -2,7 +2,7 @@ apply plugin: 'groovy'
 apply plugin: 'maven-publish'
 apply plugin: 'com.gradle.plugin-publish'
 
-version = '2.0.0'
+version = '1.0.0'
 group = 'net.praqma'
 
 def artifact = 'VersionedBinaryArtifacts'
@@ -21,14 +21,14 @@ buildscript{
 }
 
 pluginBundle {
-  website = 'http://www.praqma.com'
+  website = 'https://github.com/praqma/VersionedBinaryArtifacts'
   vcsUrl = 'https://github.com/praqma/VersionedBinaryArtifacts'
   description = 'A traceable build environment using binary dependencies'
   tags = ['binaries', 'tracability']
 
   plugins {
     binaryArtifactPlugin {
-      id = 'net.praqma.gradle.uber'
+      id = 'net.praqma.vba'
       displayName = 'Versioned Binary Artifact plugin'
     }
   }

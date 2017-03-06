@@ -1,4 +1,4 @@
-package net.praqma.gradle
+package net.praqma
 
 import groovy.transform.CompileStatic
 import org.gradle.api.GradleException

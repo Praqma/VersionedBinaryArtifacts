@@ -1,8 +1,8 @@
-package net.praqma.gradle
+package net.praqma
 
 import groovy.transform.CompileDynamic
 import groovy.transform.CompileStatic
-import net.praqma.gradle.tasks.FileTemplateTask
+import net.praqma.tasks.FileTemplateTask
 import org.apache.tools.ant.taskdefs.condition.Os
 import org.gradle.api.*
 import org.gradle.api.artifacts.Configuration
@@ -10,7 +10,7 @@ import org.gradle.api.tasks.Exec
 import org.gradle.api.tasks.Sync
 
 @CompileStatic
-class UberPlugin implements Plugin<Project> {
+class VBAPlugin implements Plugin<Project> {
 
     private Project project
 

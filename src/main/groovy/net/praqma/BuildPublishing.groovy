@@ -1,8 +1,8 @@
-package net.praqma.gradle
+package net.praqma
 
 import groovy.transform.CompileDynamic
 import groovy.transform.CompileStatic
-import net.praqma.gradle.tasks.FileTemplateTask
+import net.praqma.tasks.FileTemplateTask
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.publish.maven.MavenPublication

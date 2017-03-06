@@ -1,4 +1,4 @@
-package net.praqma.gradle.tasks
+package net.praqma.tasks
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException

@@ -1,4 +1,4 @@
-package net.praqma.gradle
+package net.praqma
 
 import groovy.text.SimpleTemplateEngine
 import groovy.transform.CompileStatic

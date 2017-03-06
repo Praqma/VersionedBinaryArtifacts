@@ -1,4 +1,4 @@
-import net.praqma.gradle.Utils
+import net.praqma.Utils
 
 
 def props = new Properties()
