@@ -1,5 +1,10 @@
 # VersionedBinaryArtifacts
-A gradle plugin to allow a build be defined in a properties file:
+
+[![Build Status](https://travis-ci.org/Praqma/VersionedBinaryArtifacts.svg?branch=develop)](https://travis-ci.org/Praqma/VersionedBinaryArtifacts)
+
+Gradle plugin: https://plugins.gradle.org/plugin/net.praqma.vba
+
+Define your build in a configurations file with the VBA gradle plugin
 
 ````
 group=net.praqma
@@ -84,12 +89,12 @@ This file has three major roles:
 
 ## Alternative fetch of plugin
 
-https://plugins.gradle.org/plugin/net.praqma.gradle.uber
+https://plugins.gradle.org/plugin/net.praqma.vba
 
 in build.gradle file add:
 
 plugins {
-  id "net.praqma.gradle.uber" version "<version>"
+  id "net.praqma.vba" version "<version>"
 }
 
 This plugin will then be downloaded from plugins.gradle.org
