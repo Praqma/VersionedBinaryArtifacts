@@ -1,6 +1,6 @@
-apply plugin: 'groovy'
-apply plugin: 'maven-publish'
-apply plugin: 'com.gradle.plugin-publish'
+ ['groovy','maven-publish','com.gradle.plugin-publish'].each {
+     apply plugin: it
+ }
 
 version = '1.0.0'
 group = 'net.praqma'
@@ -39,19 +39,23 @@ dependencies {
     compile localGroovy()
 }
 
-publishing.repositories {
+
+publishing {
+    repositories {
         maven {
-          def s = version.endsWith('-SNAPSHOT') ? 'snapshot' : 'release'
-          url "${artifactory_contextUrl}/plugins-${s}-local"
+            def s = version.endsWith('-SNAPSHOT') ? 'snapshot' : 'release'
+            url "${artifactory_contextUrl}/plugins-${s}-local"
           credentials {
               username artifactory_user
               password artifactory_password
           }
-        }
-}
-publishing.publications {
-        maven(MavenPublication) {
-            artifactId artifact
+      }
+    }
+
+    publications {
+
+        jar(MavenPublication) {
             from components.java
         }
+    }
 }

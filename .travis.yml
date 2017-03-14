@@ -4,6 +4,10 @@ branches:
   - develop
 before_script: .travis/pre_build.sh
 script: .travis/build.sh
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
 after_success: .travis/post_build_success.sh
 env:
   global:
