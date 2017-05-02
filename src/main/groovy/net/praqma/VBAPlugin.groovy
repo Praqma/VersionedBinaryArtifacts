@@ -87,8 +87,8 @@ class VBAPlugin implements Plugin<Project> {
                 maven {
                     url contextUrl +'/'+ buildExtension.publishRepo
                 }
-                mavenLocal()
             }
+            mavenLocal()
         }
     }
 
