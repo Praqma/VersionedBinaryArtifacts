@@ -14,8 +14,6 @@ class VBAPlugin implements Plugin<Project> {
 
     private Project project
 
-    private boolean isRelease
-
     @Override
     void apply(Project project) {
         this.project = project
@@ -24,13 +22,6 @@ class VBAPlugin implements Plugin<Project> {
         project.apply(plugin: 'maven-publish')
 
         BuildExtension extension = project.extensions.create('buildproperties', BuildExtension, project) as BuildExtension
-
-        if (project.hasProperty("release")){
-          isRelease = (project.properties.release == 'true') ? true : false
-        }
-        else{
-          isRelease = false
-        }
 
         File buildDefFile = project.file('build.properties')
 
@@ -58,12 +49,11 @@ class VBAPlugin implements Plugin<Project> {
         props.load(input)
         // Set properties not subject to template expansion
         String versionFull = props.version
-        if (isRelease==false){
-            versionFull+='-SNAPSHOT'
-        }
+
         buildExtension.with {
             version = versionFull
             group = props.group ?: 'net.praqma'
+            publishRepo = props.publishRepo ?: 'libs-release-local'
         }
         Map expansions = buildExtension.expansions
         def x = { s -> s ? Utils.templateExpand(s as String, expansions) : null }
@@ -90,24 +80,15 @@ class VBAPlugin implements Plugin<Project> {
 
     @CompileDynamic
     private void defineRepositoryForDependencies(BuildExtension buildExtension) {
-        String contextUrl = project.ext.properties.artifactory_contextUrl
+        String contextUrl = project.ext.properties.repositoryManagerUrl
         project.repositories {
-            println "Artifactory URL   ==============    : ${contextUrl}"
+            println "RepositoryManager URL   ==============    : ${contextUrl}"
             if(contextUrl) {
-                if (buildExtension.dependencies && (buildExtension.dependencies.any {it.endsWith('-SNAPSHOT')})) {
-                  if(isRelease){
-                    throw new Exception("Cannot base release on snapshots")
-                  }
-                    maven {
-                        url contextUrl + buildExtension.dependencySnapshotRepoPath
-                    }
-                    mavenLocal()
-                }
                 maven {
-                    url contextUrl + buildExtension.dependencyReleaseRepoPath
+                    url contextUrl + buildExtension.publishRepo
                 }
+                mavenLocal()
             }
-            mavenLocal()
         }
     }
 
@@ -136,7 +117,7 @@ class VBAPlugin implements Plugin<Project> {
             }
         }
 
-        createBuildTask('createBuildInfo', FileTemplateTask) {
+            createBuildTask('createBuildInfo', FileTemplateTask) {
             template '/templates/buildInfo.properties'
         }
 
@@ -222,13 +203,13 @@ class VBAPlugin implements Plugin<Project> {
 
     @CompileDynamic
     void setupPublishing(BuildExtension extension) {
-        String repoUser = project.ext.properties.artifactory_user
-        String repoPassword = project.ext.properties.artifactory_password
-        String contextUrl = project.ext.properties.artifactory_contextUrl
+        String repoUser = project.ext.properties.repositoryManagerUsername
+        String repoPassword = project.ext.properties.repositoryManagerPassword
+        String contextUrl = project.ext.properties.repositoryManagerUrl
         if (repoUser == null || repoPassword == null) {
             project.logger.lifecycle "Incomplete credentials for artifact repository. No publishing"
         } else {
-            String repoUrl = "${contextUrl}${isRelease ? extension.publishingReleaseRepoPath : extension.publishingSnapshotRepoPath}"
+            String repoUrl = "${contextUrl}/${extension.publishRepo}"
             project.publishing.repositories {
                 maven {
                     url repoUrl

@@ -2,7 +2,7 @@
      apply plugin: it
  }
 
-version = '1.0.0'
+version = '2.0.0'
 group = 'net.praqma'
 
 def artifact = 'VersionedBinaryArtifacts'
@@ -43,11 +43,10 @@ dependencies {
 publishing {
     repositories {
         maven {
-            def s = version.endsWith('-SNAPSHOT') ? 'snapshot' : 'release'
-            url "${artifactory_contextUrl}/plugins-${s}-local"
+            url "${repositoryManagerUrl}/plugins-release-local"
           credentials {
-              username artifactory_user
-              password artifactory_password
+              username repositoryManagerUsername
+              password repositoryManagerPassword
           }
       }
     }

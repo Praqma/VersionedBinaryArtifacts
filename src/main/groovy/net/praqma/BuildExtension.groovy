@@ -24,14 +24,7 @@ class BuildExtension {
 
     File versionDir
 
-    @Lazy
-    String dependencySnapshotRepoPath = "/libs-snapshot-local"
-    @Lazy
-    String dependencyReleaseRepoPath = "/libs-release-local"
-    @Lazy
-    String publishingSnapshotRepoPath = "/libs-snapshot-local"
-    @Lazy
-    String publishingReleaseRepoPath = "/libs-release-local"
+    String publishRepo
 
     Collection<String> dependencies
 

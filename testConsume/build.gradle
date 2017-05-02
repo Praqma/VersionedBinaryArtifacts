@@ -3,7 +3,7 @@ buildscript {
       mavenLocal()
     }
     dependencies {
-        classpath "net.praqma:VersionedBinaryArtifacts:1.0.0"
+        classpath "net.praqma:VersionedBinaryArtifacts:2.0.0"
     }
     configurations.classpath.resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
