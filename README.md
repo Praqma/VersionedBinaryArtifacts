@@ -30,6 +30,7 @@ In the properties file you can describe:
 
  - Automatic pre-build generation of a version.h and build.h to use in the build process
  - Creation of a buildInfo.properties:
+ - Nested dependencies overview for each build
 
 buildInfo.properties uses build_number and build_url from Jenkins build environment.
 
@@ -41,7 +42,6 @@ GIT_SHA=b3d9cf1ad981e6597ab31d9132336da623b50de2
 
 VERSION=1.0.5-SNAPSHOT
 ````
-
 
 ## How to use the plugin
 
@@ -86,7 +86,7 @@ eg:
 ````
 ./gradlew publish
 ````
-will publish the artifact to libs.release.local
+will publish the artifact to libs-release-local
 
 
 # Resolving dependencies
