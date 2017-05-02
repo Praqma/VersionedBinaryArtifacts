@@ -85,7 +85,7 @@ class VBAPlugin implements Plugin<Project> {
             println "RepositoryManager URL   ==============    : ${contextUrl}"
             if(contextUrl) {
                 maven {
-                    url contextUrl + buildExtension.publishRepo
+                    url contextUrl +'/'+ buildExtension.publishRepo
                 }
                 mavenLocal()
             }
