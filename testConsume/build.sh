@@ -1,3 +1,3 @@
 #!/bin/bash
 set -e
-gcc main.c -Lbuild/resolvedDep/libtest/lib/ -ltest -o apptest
+gcc main.c -L dihr2/libtest/lib/ -ltest -o apptest

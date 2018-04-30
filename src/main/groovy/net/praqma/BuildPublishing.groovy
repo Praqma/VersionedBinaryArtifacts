@@ -22,10 +22,10 @@ class BuildPublishing {
     void zip(Closure closure) {
         String pubName = 'defaultPub'
         Project project = extension.project
+        String depDir = extension.resolvedDepDir
 
         FileTemplateTask createBuildInfoTask = project.createBuildInfo
         Task executeBuildTask = project.executeBuildCommand
-
 
 
         Task task = project.tasks.create(name: "create${pubName.capitalize()}", type: Zip) {
@@ -35,7 +35,7 @@ class BuildPublishing {
             into ("dep"){
               from createBuildInfoTask
               from {
-                project.fileTree(dir:'build/resolvedDep/', include: '**/dep/*.properties', exclude: ['**/bin/', '**/include/', '**/hex/', '**/lib/', '**/lib/', '**/doc/', '**/src/' ])
+                project.fileTree(dir: depDir, include: '**/dep/*.properties', exclude: ['**/bin/', '**/include/', '**/hex/', '**/lib/', '**/lib/', '**/doc/', '**/src/' ])
               }
             }
         }

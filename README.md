@@ -11,7 +11,7 @@ group=net.praqma
 version=1.0.5
 publishRepo=libs-release-local
 artifact=demo-project-${osFamily}
-buildWorkingDir=.
+resolvedDepDir=path/to/your/download/folder
 buildCmd=${osFamily == 'win32' ? 'build.bat' : './build.sh'}
 dependencies=net.praqma:demo-project-${osFamily}:1.0.9-SNAPSHOT
 ````
@@ -25,12 +25,12 @@ In the properties file you can describe:
  - The build command to run (e.g. `make all`)
  - The build directory to run from
  - The dependencies that must be resolved
+ - The folder your dependencies will end up in
 
 ## Key features:
 
  - Automatic pre-build generation of a version.h and build.h to use in the build process
  - Creation of a buildInfo.properties:
- - Nested dependencies overview for each build
 
 buildInfo.properties uses build_number and build_url from Jenkins build environment.
 
@@ -42,6 +42,7 @@ GIT_SHA=b3d9cf1ad981e6597ab31d9132336da623b50de2
 
 VERSION=1.0.5-SNAPSHOT
 ````
+
 
 ## How to use the plugin
 
@@ -86,7 +87,7 @@ eg:
 ````
 ./gradlew publish
 ````
-will publish the artifact to libs-release-local
+will publish the artifact to libs.release.local
 
 
 # Resolving dependencies

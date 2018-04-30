@@ -3,7 +3,7 @@ buildscript {
       mavenLocal()
     }
     dependencies {
-        classpath "net.praqma:VersionedBinaryArtifacts:2.0.0"
+        classpath "net.praqma:VersionedBinaryArtifacts:2.0.2"
     }
     configurations.classpath.resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
@@ -14,25 +14,17 @@ buildproperties {
     publishing {
       zip {
         into("bin"){
-          from file("apptest")
+          from file("main.c")
         }
       }
   }
-}
-
-task apiJar(type: Zip) {
-    baseName "publishing-api"
-    into("src"){
-        from file("main.c")
-    }
-
 }
 
 publishing.publications {
     api(MavenPublication) {
         groupId 'net.praqma'
         artifactId 'project2-api'
-        version '2.0.0'
+        version '2.0.1'
 
         artifact apiJar
     }

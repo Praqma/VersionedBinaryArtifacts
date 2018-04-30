@@ -18,6 +18,7 @@ class BuildExtension {
     String group
     String artifact
     String productName
+    String resolvedDepDir
 
     String buildCmd
     File buildWorkingDir
@@ -58,7 +59,6 @@ class BuildExtension {
                 targetArch    : project.hasProperty("targetArch") ? project.properties.targetArch : osFamily,
                 buildNumber   : buildNumber,
                 buildUrl      : buildUrl,
-                resolvedDepDir: resolveDepDir,
                 productName   : productName,
                 artifact      : artifact
         ] + (Utils.versionParts(version) as Map)
@@ -71,7 +71,4 @@ class BuildExtension {
 
     final String buildUrl = System.getenv("BUILD_URL") ?: "DEVELOPER"
 
-    String getResolveDepDir() {
-        "${project.buildDir}/resolvedDep"
-    }
 }

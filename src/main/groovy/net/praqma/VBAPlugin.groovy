@@ -51,6 +51,7 @@ class VBAPlugin implements Plugin<Project> {
         String versionFull = props.version
 
         buildExtension.with {
+            resolvedDepDir = props.resolvedDepDir ?: "${project.buildDir}/resolvedDep"
             version = versionFull
             group = props.group ?: 'net.praqma'
             publishRepo = props.publishRepo ?: 'libs-release-local'
@@ -124,13 +125,14 @@ class VBAPlugin implements Plugin<Project> {
 
         Sync t3 = createBuildTask('resolveDependencies', Sync) {
           project.configurations._lib.collect {
-            String name = it.getName().split('-')[0]
+            String name = it.getName().split(/-\d+\./)[0]
             from (project.zipTree(it)){
               into name
             }
           }
-          into (buildExtension.resolveDepDir)
+          into (buildExtension.resolvedDepDir)
         }
+
 
         String taskName = 'executeBuildCommand'
         if (project.buildproperties.buildCmd) {

@@ -1,13 +1,15 @@
 buildscript {
     repositories {
-      mavenLocal()
+	mavenLocal()
     }
     dependencies {
-        classpath "net.praqma:VersionedBinaryArtifacts:2.0.0"
+        classpath "net.praqma:VersionedBinaryArtifacts:2.0.2"
     }
     configurations.classpath.resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
+
 apply plugin: 'net.praqma.vba'
+
 
 buildproperties.publishing {
       zip {
