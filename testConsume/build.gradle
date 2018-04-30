@@ -19,13 +19,3 @@ buildproperties {
       }
   }
 }
-
-publishing.publications {
-    api(MavenPublication) {
-        groupId 'net.praqma'
-        artifactId 'project2-api'
-        version '2.0.1'
-
-        artifact apiJar
-    }
-}
